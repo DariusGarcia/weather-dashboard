@@ -24,7 +24,6 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
 }
 
 .search-container {
@@ -33,14 +32,14 @@ main {
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    background-color: gainsboro;
-    margin-bottom: 12rem;
+    /* background-color: gainsboro; */
+    margin-bottom: 2rem;
 }
-
 
 .search-input {
     padding: 1rem;
     width: 24rem;
+    border-radius: 3px;
 }
 
 .search-btn {
@@ -51,4 +50,22 @@ main {
     border: none;
     width: 8rem;
     font-weight: bold;
+}
+
+.search-btn:hover {
+    transform: scale(.95);
+    transform: ease-in-out;
+    opacity: 75%;
+}
+
+
+/* 
+    data container
+ */
+
+.data-container {
+    background-color: gainsboro;
+    height: 36rem;
+    width: 60%;
+
 }
