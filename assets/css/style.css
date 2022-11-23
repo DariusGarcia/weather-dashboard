@@ -76,6 +76,10 @@ main {
     ;
 }
 
+.city {
+    padding-left: 1rem;
+}
+
 .card-wrapper {
     display: flex;
     flex-direction: column;
