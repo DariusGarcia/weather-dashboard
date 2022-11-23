@@ -7,17 +7,17 @@ var cityEl = document.querySelector('.city')
 var stateVar
 
 // function to fetch the lon and lat coordinates
-async function fetchCityData(event) {
+function fetchCityData(event) {
 	event.preventDefault()
 	var inputEl = document.querySelector('.search-input')
 	var inputValue = inputEl.value
-	var geoCodingURL = `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=${limit}&appid=${apiKey}`
-	await fetch(geoCodingURL)
+	var geoCodingURL = `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=${limit}&units=imperial&appid=${apiKey}`
+	fetch(geoCodingURL)
 		.then((res) => {
 			return res.json()
 		})
 		.then((data) => {
-			console.log(data[0])
+			// console.log(data[0])
 			stateVar = data[0].state
 			return fetchWeatherData(data[0])
 		})
@@ -28,13 +28,13 @@ async function fetchCityData(event) {
 }
 
 // function to fetch the city's weather data based on coordinate parameters
-async function fetchWeatherData(coordinates) {
+function fetchWeatherData(coordinates) {
 	var { lat } = coordinates
 	var { lon } = coordinates
 	var baseURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat.toFixed(
 		2
 	)}&lon=${lon.toFixed(2)}&appid=${apiKey}`
-	await fetch(baseURL)
+	fetch(baseURL)
 		.then((res) => {
 			return res.json()
 		})
@@ -48,19 +48,33 @@ function populateCards(weatherData) {
 	// create weather cards and populate them with class attributes
 	// for loop for each of the five days of the forecast
 	cityEl.innerHTML = `${weatherData.city.name}, ${stateVar}`
-	for (var i = 0; i < 5; i++) {
+	for (var i = 0; i < weatherData.list.length; i += 8) {
+		// create elements
 		var cardArticleEl = document.createElement('article')
 		var cardh3El = document.createElement('h3')
+		var iconEl = document.createElement('img')
+		var tempEl = document.createElement('p')
+		var windEl = document.createElement('p')
+		var humidityEl = document.createElement('p')
+
+		// set attributes
 		cardArticleEl.setAttribute('class', 'singleWeatherCard')
 		cardh3El.setAttribute('class', 'card-date')
-		var iconEl = document.createElement('img')
 		iconEl.setAttribute('class', 'icon')
-		var tempEl = document.createElement('p')
+		iconEl.setAttribute('src', './assets/images/cloudy-icon.png')
 		tempEl.setAttribute('class', 'temperature')
-		var windEl = document.createElement('p')
 		windEl.setAttribute('class', 'wind')
-		var humidityEl = document.createElement('p')
 		humidityEl.setAttribute('class', 'humidity')
+
+		// set inner HTML
+		cardh3El.textContent = weatherData.list[i]['dt_txt'].substring(0, 10)
+		tempEl.textContent = 'Temp: ' + weatherData.list[i].main.temp
+
+		// append children to parent el
+		cardArticleEl.appendChild(cardh3El)
+		cardArticleEl.appendChild(tempEl)
+		cardArticleEl.appendChild(iconEl)
+		cardWrapperEl.appendChild(cardArticleEl)
 	}
 }
 
