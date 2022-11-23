@@ -26,13 +26,13 @@ main {
     align-items: center;
 }
 
+/* search form */
 .search-container {
     height: 8rem;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    /* background-color: gainsboro; */
     margin-bottom: 2rem;
 }
 
@@ -82,6 +82,7 @@ main {
 
 }
 
+/* individual 5 day forecast card */
 .singleWeatherCard {
     display: flex;
     flex-direction: column;
@@ -94,6 +95,7 @@ main {
     border-radius: 8px;
 }
 
+/* media queries */
 @media (min-width: 900px) {
     .card-wrapper {
         display: grid;
