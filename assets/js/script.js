@@ -12,7 +12,6 @@ async function fetchCityData(event) {
 	var inputEl = document.querySelector('.search-input')
 	var inputValue = inputEl.value
 	var geoCodingURL = `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=${limit}&appid=${apiKey}`
-
 	await fetch(geoCodingURL)
 		.then((res) => {
 			return res.json()
@@ -25,6 +24,7 @@ async function fetchCityData(event) {
 		.catch((err) => {
 			console.log(err)
 		})
+	inputEl.value = ''
 }
 
 // function to fetch the city's weather data based on coordinate parameters
@@ -66,7 +66,7 @@ function populateCards(weatherData) {
 
 // function to save past searched cities to localStorage
 function saveSearch(city) {
-	localStorage.setItem(cityName, city)
+	return localStorage.setItem(cityName, city)
 }
 
 // search city button event handler
