@@ -64,8 +64,39 @@ main {
  */
 
 .data-container {
-    background-color: gainsboro;
-    height: 36rem;
-    width: 60%;
+    background-color: white;
+    height: 100%;
+    width: 80%;
+    border-radius: 8px;
+    padding: 2rem;
+}
 
+.forecastTitle {
+    padding-left: 1rem;
+    ;
+}
+
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.singleWeatherCard {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+    margin: 1rem;
+    width: 14rem;
+    height: 24rem;
+    background-color: gainsboro;
+    border-radius: 8px;
+}
+
+@media (min-width: 900px) {
+    .card-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
 }
