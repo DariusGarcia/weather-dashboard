@@ -3,6 +3,7 @@ var limit = 5
 
 var searchBtn = document.querySelector('.search-btn')
 var cardWrapperEl = document.querySelector('.card-wrapper')
+var historyEl = document.querySelector('.searchHistory')
 var cityEl = document.querySelector('.city')
 var stateVar
 
@@ -11,13 +12,13 @@ function fetchCityData(event) {
 	event.preventDefault()
 	var inputEl = document.querySelector('.search-input')
 	var inputValue = inputEl.value
+	saveSearch(inputValue)
 	var geoCodingURL = `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=${limit}&units=imperial&appid=${apiKey}`
 	fetch(geoCodingURL)
 		.then((res) => {
 			return res.json()
 		})
 		.then((data) => {
-			// console.log(data[0])
 			stateVar = data[0].state
 			return fetchWeatherData(data[0])
 		})
@@ -86,8 +87,20 @@ function populateCards(weatherData) {
 }
 
 // function to save past searched cities to localStorage
+var citiesList = []
 function saveSearch(city) {
-	return localStorage.setItem(cityName, city)
+	var historyListEl = document.createElement('button')
+	historyListEl.setAttribute('class', 'historyList')
+	var historyValue = JSON.parse(localStorage.getItem('cities'))
+	if (!citiesList.includes(city)) {
+		citiesList.push(city)
+		localStorage.setItem('cities', JSON.stringify(citiesList))
+
+		citiesList.map((cityItem) => {
+			historyListEl.textContent = cityItem
+			historyEl.appendChild(historyListEl)
+		})
+	}
 }
 
 function convertTemp(value) {
