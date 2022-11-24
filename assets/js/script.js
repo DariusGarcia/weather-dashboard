@@ -8,9 +8,9 @@ var cityEl = document.querySelector('.city')
 var stateVar
 
 // function to fetch the lon and lat coordinates
+var inputEl = document.querySelector('.search-input')
 function fetchCityData(event) {
 	event.preventDefault()
-	var inputEl = document.querySelector('.search-input')
 	var inputValue = inputEl.value
 	saveSearch(inputValue)
 	var geoCodingURL = `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=${limit}&units=imperial&appid=${apiKey}`
@@ -98,11 +98,27 @@ function saveSearch(city) {
 
 		citiesList.map((cityItem) => {
 			historyListEl.textContent = cityItem
+			historyListEl.addEventListener('click', handleSearchClick(cityItem))
 			historyEl.appendChild(historyListEl)
 		})
 	}
 }
 
+function handleSearchClick(cityListEl) {
+	var apiCall = `https://api.openweathermap.org/geo/1.0/direct?q=${cityListEl}&limit=${limit}&units=imperial&appid=${apiKey}`
+	fetch(apiCall)
+		.then((res) => {
+			return res.json()
+		})
+		.then((data) => {
+			stateVar = data[0].state
+			return fetchWeatherData(data[0])
+		})
+		.catch((err) => {
+			console.log(err)
+		})
+	inputEl.value = ''
+}
 function convertTemp(value) {
 	const faren = (value - 273.15) * (9 / 5) + 32
 	return faren.toFixed(2)
