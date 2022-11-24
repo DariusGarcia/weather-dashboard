@@ -45,6 +45,7 @@ function fetchWeatherData(coordinates) {
 }
 
 function populateCards(weatherData) {
+	cardWrapperEl.innerHTML = ''
 	// create weather cards and populate them with class attributes
 	// for loop for each of the five days of the forecast
 	cityEl.innerHTML = `${weatherData.city.name}, ${stateVar}`
@@ -61,19 +62,25 @@ function populateCards(weatherData) {
 		cardArticleEl.setAttribute('class', 'singleWeatherCard')
 		cardh3El.setAttribute('class', 'card-date')
 		iconEl.setAttribute('class', 'icon')
-		iconEl.setAttribute('src', './assets/images/cloudy-icon.png')
 		tempEl.setAttribute('class', 'temperature')
+		iconEl.setAttribute('src', './assets/images/cloudy-icon.png')
 		windEl.setAttribute('class', 'wind')
 		humidityEl.setAttribute('class', 'humidity')
 
 		// set inner HTML
 		cardh3El.textContent = weatherData.list[i]['dt_txt'].substring(0, 10)
-		tempEl.textContent = 'Temp: ' + weatherData.list[i].main.temp
+		tempEl.textContent =
+			'Temp: ' + convertTemp(weatherData.list[i].main.temp) + '°F'
+		windEl.textContent = 'Wind: ' + weatherData.list[i].wind.speed + ' MPH'
+		humidityEl.textContent =
+			'Humidity: ' + weatherData.list[i].main.humidity + '%'
 
 		// append children to parent el
 		cardArticleEl.appendChild(cardh3El)
-		cardArticleEl.appendChild(tempEl)
 		cardArticleEl.appendChild(iconEl)
+		cardArticleEl.appendChild(tempEl)
+		cardArticleEl.appendChild(windEl)
+		cardArticleEl.appendChild(humidityEl)
 		cardWrapperEl.appendChild(cardArticleEl)
 	}
 }
@@ -81,6 +88,11 @@ function populateCards(weatherData) {
 // function to save past searched cities to localStorage
 function saveSearch(city) {
 	return localStorage.setItem(cityName, city)
+}
+
+function convertTemp(value) {
+	const faren = (value - 273.15) * (9 / 5) + 32
+	return faren.toFixed(2)
 }
 
 // search city button event handler
