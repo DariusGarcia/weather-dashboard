@@ -2,7 +2,7 @@
 
 [link to deployed app](https://dariusgarcia.github.io/weather-dashboard/)
 
-![Screenshot of web app](./assets/images/weather.png)
+![Screenshot of web app](./assets/images/weather-dashboard.png)
 
 ## Description
 
