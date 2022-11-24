@@ -82,6 +82,7 @@ main {
     width: 100%;
     border-radius: 8px;
     padding: 2rem;
+    min-height: 32rem;
     color: black;
 }
 
@@ -109,6 +110,36 @@ main {
     display: flex;
     justify-content: center;
     width: 25%;
+}
+
+.searchHistory {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 1.5rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    max-height: 32rem;
+    min-height: 32rem;
+    overflow-y: auto
+}
+
+.historyList {
+    text-transform: capitalize;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: none;
+    background-color: rgb(74, 189, 228);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.historyList:hover {
+    opacity: 85%;
+    scale: .98;
+    transition: ease-in-out;
+    transition-delay: 0.05s;
+
 }
 
 /* media queries */
