@@ -11,7 +11,7 @@ function fetchCityData(event) {
 	event.preventDefault()
 	var inputEl = document.querySelector('.search-input')
 	var inputValue = inputEl.value
-	var geoCodingURL = `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=${limit}&units=imperial&appid=${apiKey}`
+	var geoCodingURL = `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=${limit}&units=imperial&appid=${apiKey}`
 	fetch(geoCodingURL)
 		.then((res) => {
 			return res.json()
