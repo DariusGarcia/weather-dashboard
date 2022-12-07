@@ -28,12 +28,16 @@ main {
 
 /* search form */
 .forecast-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     background-color: white;
     /* height: 100%; */
     width: 100%;
     border-radius: 8px;
     padding: 2rem;
     min-height: 32rem;
+    height: 100%;
     color: black;
 }
 
@@ -47,6 +51,10 @@ main {
 }
 
 .search-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1rem;
     height: 10rem;
 }
 
@@ -95,11 +103,11 @@ main {
  */
 
 .current-weather-container {
-    background-color: white;
+    background-color: gainsboro;
     width: 100%;
     border-radius: 8px;
     padding: 2rem;
-
+    min-height: 12rem;
     color: black;
 }
 
@@ -128,8 +136,6 @@ main {
 }
 
 .data-container {
-    background-color: white;
-    /* height: 100%; */
     width: 100%;
     border-radius: 8px;
     padding: 2rem;
@@ -141,7 +147,7 @@ main {
     display: flex;
     flex-direction: column;
     height: 100%;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 /* individual 5 day forecast card */
