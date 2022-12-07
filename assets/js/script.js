@@ -64,7 +64,13 @@ function populateCards(weatherData) {
 		cardh3El.setAttribute('class', 'card-date')
 		iconEl.setAttribute('class', 'icon')
 		tempEl.setAttribute('class', 'temperature')
-		iconEl.setAttribute('src', './assets/images/cloudy-icon.png')
+		iconEl.setAttribute(
+			'src',
+			'https://openweathermap.org/img/w/' +
+				weatherData.list[i].weather[0].icon +
+				'.png'
+		)
+
 		windEl.setAttribute('class', 'wind')
 		humidityEl.setAttribute('class', 'humidity')
 
@@ -89,22 +95,27 @@ function populateCards(weatherData) {
 // function to save past searched cities to localStorage
 var citiesList = []
 function saveSearch(city) {
+	const searchQueryObj = { name: city }
 	var historyListEl = document.createElement('button')
 	historyListEl.setAttribute('class', 'historyList')
 	var historyValue = JSON.parse(localStorage.getItem('cities'))
 	if (!citiesList.includes(city)) {
-		citiesList.push(city)
+		citiesList.push(searchQueryObj)
 		localStorage.setItem('cities', JSON.stringify(citiesList))
 
 		citiesList.map((cityItem) => {
-			historyListEl.textContent = cityItem
-			historyListEl.addEventListener('click', handleSearchClick(cityItem))
+			historyListEl.textContent = cityItem.name
+			historyListEl.addEventListener('click', () => {
+				cardWrapperEl.innerHTML = ''
+				handleSearchClick(cityItem.name)
+			})
 			historyEl.appendChild(historyListEl)
 		})
 	}
 }
 
 function handleSearchClick(cityListEl) {
+	cardWrapperEl.innerHTML = ''
 	var apiCall = `https://api.openweathermap.org/geo/1.0/direct?q=${cityListEl}&limit=${limit}&units=imperial&appid=${apiKey}`
 	fetch(apiCall)
 		.then((res) => {
