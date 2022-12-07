@@ -27,6 +27,16 @@ main {
 }
 
 /* search form */
+.forecast-container {
+    background-color: white;
+    /* height: 100%; */
+    width: 100%;
+    border-radius: 8px;
+    padding: 2rem;
+    min-height: 32rem;
+    color: black;
+}
+
 .search-container {
     height: 8rem;
     display: flex;
@@ -34,6 +44,10 @@ main {
     align-items: center;
     padding: 2rem;
     margin-bottom: 2rem;
+}
+
+.search-wrapper {
+    height: 10rem;
 }
 
 .search-input {
@@ -61,24 +75,61 @@ main {
 .data-wrapper {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     gap: 2rem;
 }
 
 /* 
-    data container
+    search history container 
+*/
+.history-container {
+    width: 30%;
+    height: 100%;
+    border-radius: 8px;
+    background-color: white;
+}
+
+/* 
+    current weather forecast container
+ */
+
+.current-weather-container {
+    background-color: white;
+    width: 100%;
+    border-radius: 8px;
+    padding: 2rem;
+
+    color: black;
+}
+
+.currentWeatherCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+    background-color: gainsboro;
+    border-radius: 8px;
+}
+
+/* 
+    5 day forecast container
  */
 
 .searchHistory {
     background-color: white;
     border-radius: 8px;
     padding: 2rem;
+
 }
 
 .data-container {
     background-color: white;
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
     border-radius: 8px;
     padding: 2rem;
@@ -89,6 +140,7 @@ main {
 .card-wrapper {
     display: flex;
     flex-direction: column;
+    height: 100%;
     gap: 2rem;
 }
 
@@ -101,7 +153,7 @@ main {
     margin-top: 1rem;
     padding: 1rem;
     width: 100%;
-    height: 24rem;
+    height: 100%;
     background-color: gainsboro;
     border-radius: 8px;
 }
@@ -109,7 +161,7 @@ main {
 .icon {
     display: flex;
     justify-content: center;
-    width: 25%;
+    width: 50%;
 }
 
 .searchHistory {
@@ -120,7 +172,7 @@ main {
     font-weight: 700;
     font-size: 1.5rem;
     max-height: 32rem;
-    min-height: 32rem;
+    /* min-height: 32rem; */
     overflow-y: auto
 }
 
@@ -139,7 +191,6 @@ main {
     scale: .98;
     transition: ease-in-out;
     transition-delay: 0.05s;
-
 }
 
 /* media queries */
@@ -147,15 +198,6 @@ main {
     .data-wrapper {
         flex-direction: row;
         padding: 0 2rem;
-    }
-
-    .searchHistory {
-        width: 30%;
-
-    }
-
-    .data-container {
-        width: 60%;
     }
 
     .card-wrapper {
